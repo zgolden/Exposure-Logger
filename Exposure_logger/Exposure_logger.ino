@@ -116,7 +116,7 @@ void loop() {
   
   if (! aqi.read(&data)) {
     Serial.println("Could not read from AQI");
-    delay(500);  // try again in a bit!
+    delay(100);  // try again in a bit!
     return;
   }
   Serial.println("AQI reading success");
@@ -139,37 +139,37 @@ void loop() {
 
 // Creating the string to write to the file
   
-dataString += String(data.pm10_standard);
+dataString += String(data.pm10_standard); // Column 1 (this label is to make my life easier writing matlab code)
 dataString += ",";
-dataString += String(data.pm25_standard);
+dataString += String(data.pm25_standard); // Column 2
 dataString += ",";
-dataString += String(data.pm100_standard);
+dataString += String(data.pm100_standard); // Column 3
 dataString += ",";
-dataString += String(data.pm10_env);
+dataString += String(data.pm10_env); // Column 4
 dataString += ",";
-dataString += String(data.pm25_env);
+dataString += String(data.pm25_env); // Column 5
 dataString += ",";
-dataString += String(data.pm100_env);
+dataString += String(data.pm100_env); // Column 6
 dataString += ",";
-dataString += String(data.particles_03um);
+dataString += String(data.particles_03um); // Column 7
 dataString += ",";
-dataString += String(data.particles_05um);
+dataString += String(data.particles_05um); // Column 8
 dataString += ",";
-dataString += String(data.particles_10um);
+dataString += String(data.particles_10um); // Column 9
 dataString += ",";
-dataString += String(data.particles_25um);
+dataString += String(data.particles_25um); // Column 10
 dataString += ",";
-dataString += String(data.particles_50um);   
+dataString += String(data.particles_50um); // Column 11   
 dataString += ",";
-dataString += String(data.particles_100um);
+dataString += String(data.particles_100um); // Column 12
 dataString += ",";
-dataString += String(sgp.TVOC);
+dataString += String(sgp.TVOC); // Column 13
 dataString += ",";
-dataString += String(sgp.eCO2); 
+dataString += String(sgp.eCO2); // Column 14
 dataString += ",";
-dataString += String(sgp.rawH2);
+dataString += String(sgp.rawH2); // Column 15
 dataString += ",";
-dataString += String(sgp.rawEthanol);
+dataString += String(sgp.rawEthanol); // Column 16
 dataString += ",";
  
   // open the file. note that only one file can be open at a time,
@@ -201,6 +201,6 @@ dataString += ",";
     Serial.print("****Baseline values: eCO2: 0x"); Serial.print(eCO2_base, HEX);
     Serial.print(" & TVOC: 0x"); Serial.println(TVOC_base, HEX);
   }
-  delay(300000);
+  delay(60000);
 
 }
